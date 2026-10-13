@@ -21,7 +21,7 @@ function useOnline() {
 
 export default function App() {
   const { user, loading } = useAuth();
-  if (loading) return <div className="nr-splash"><div className="nr-brand nr-glitch" style={{ fontSize: "1.8rem" }}>NEON<b>RIDE</b></div></div>;
+  if (loading) return <div className="nr-splash"><div className="nr-brand nr-glitch" style={{ fontSize: "1.8rem" }}><b>OPHIR</b></div></div>;
   if (!user) return <AuthPage />;
   if (user.role === "admin") return <AdminNotice />;
   return <Shell role={user.role} />;
@@ -34,7 +34,7 @@ function Shell({ role }: { role: "rider" | "driver" }) {
   return (
     <div className="nr-app">
       <header className="nr-header">
-        <div className="nr-brand">NEON<b>RIDE</b></div>
+        <div className="nr-brand"><b>OPHIR</b></div>
         <span className="nr-chip nr-chip--on">{role}</span>
       </header>
       {!online && <div className="nr-offline" role="alert">Offline: reconnecting…</div>}

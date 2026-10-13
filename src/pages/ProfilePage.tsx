@@ -82,7 +82,7 @@ export default function ProfilePage({ active }: { active: boolean }) {
 
       <h3 className="nr-h">App</h3>
       <div className="nr-panel">
-        {install.canInstall && <button className="btn-cp btn-block mb-2" onClick={install.prompt}>Install NEON RIDE</button>}
+        {install.canInstall && <button className="btn-cp btn-block mb-2" onClick={install.prompt}>Install OPHIR</button>}
         {install.installed && <div className="nr-muted small mb-2">Installed as an app on this device.</div>}
         <Kv rows={[["Version", "1.0.0 prototype"], ["Map data", "© OpenStreetMap contributors"], ["Geocoding", "Nominatim (OSM)"]]} />
       </div>

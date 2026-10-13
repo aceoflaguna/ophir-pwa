@@ -13,8 +13,8 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["icons/favicon.svg", "icons/apple-touch-icon.png"],
       manifest: {
-        name: "NEON RIDE",
-        short_name: "NeonRide",
+        name: "OPHIR",
+        short_name: "Ophir",
         description: "Cyberpunk ride-hailing: book rides, drive, and review your trip history.",
         start_url: "/app/",
         scope: "/app/",

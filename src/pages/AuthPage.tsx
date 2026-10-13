@@ -33,7 +33,7 @@ export default function AuthPage() {
   return (
     <div className="nr-auth">
       <div className="nr-auth-card">
-        <div className="nr-logo nr-brand nr-glitch">NEON<b>RIDE</b></div>
+        <div className="nr-logo nr-brand nr-glitch"><b>OPHIR</b></div>
         <div className="nr-tag">Night-city mobility</div>
         <div className="nr-seg mb-3" role="tablist">
           <button type="button" role="tab" aria-selected={mode === "login"} className={mode === "login" ? "on" : ""} onClick={() => { setMode("login"); setErr(null); }}>Sign in</button>
