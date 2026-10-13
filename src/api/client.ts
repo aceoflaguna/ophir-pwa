@@ -1,6 +1,6 @@
 import type {
   Counterpart, DriverProfile, Earnings, EstimateOption, Offer, PaymentMethod, Payment, Place, Ride, RideEvent,
-  RideStatus, SessionInfo, Tokens, User, VehicleType,
+  RideStatus, SessionInfo, Tokens, User, VehicleType, ChatMessage,
 } from "./types";
 
 const BASE = "/api/v1";
@@ -116,6 +116,10 @@ export const api = {
   ride: (id: string) => request<{ ride: Ride }>("GET", `/rides/${id}`),
   rideStats: () => request<{ completed: number; cancelled: number; noDrivers: number; totalFare: number; totalEarnings: number; totalKm: number; currency: string }>("GET", "/rides/stats"),
   rideEvents: (id: string) => request<{ events: RideEvent[] }>("GET", `/rides/${id}/events`),
+  
+  messages: (id: string, after = 0) => request<{ messages: ChatMessage[] }>("GET", `/rides/${id}/messages${qs({ after })}`),
+  sendMessage: (id: string, body: string) => request<{ message: ChatMessage }>("POST", `/rides/${id}/messages`, { body }),
+
   rides: (o: { status?: RideStatus; limit?: number; offset?: number }) => request<{ rides: ListedRide[]; limit: number; offset: number }>("GET", `/rides${qs(o)}`),
   cancelRide: (id: string, reason?: string) => request<{ ride: Ride }>("POST", `/rides/${id}/cancel`, { reason }),
   rateRide: (id: string, rating: number, comment?: string) => request<void>("POST", `/rides/${id}/rate`, { rating, comment }),

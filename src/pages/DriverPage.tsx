@@ -8,6 +8,7 @@ import { useGeolocation } from "../hooks/useGeolocation";
 import { usePolling } from "../hooks/usePolling";
 import { useToast } from "../state/toast";
 import { haversineKm, km, money } from "../util/format";
+import RideChat from "../components/RideChat";
 
 const load = <T,>(key: string, fallback: T): T => { try { const v = localStorage.getItem(key); return v ? (JSON.parse(v) as T) : fallback; } catch { return fallback; } };
 const save = (key: string, v: unknown) => { try { localStorage.setItem(key, JSON.stringify(v)); } catch { /* ignore */ } };
@@ -162,6 +163,8 @@ export default function DriverPage({ active }: { active: boolean }) {
               ["Fare", money(ride.estimate.fare, ride.currency) + ` · ${ride.paymentMethod}`],
               [ride.status === "in_progress" ? "To drop-off" : "To pickup", (ride.status === "in_progress" ? toDrop : toPickup) != null ? km((ride.status === "in_progress" ? toDrop : toPickup)!) : "—"],
             ]} />
+
+            <div className="mt-3"><RideChat key={ride.id} rideId={ride.id} me="driver" peerName={ride.rider?.name} /></div>
             <div className="d-flex gap-2 mt-3 flex-wrap">
               {ride.status === "accepted" && <button className="btn-cp flex-fill" disabled={busy} onClick={() => step("arrive")}>I have arrived</button>}
               {ride.status === "arrived" && <button className="btn-cp flex-fill" disabled={busy} onClick={() => step("start")}>Start trip</button>}

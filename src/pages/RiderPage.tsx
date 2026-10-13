@@ -9,6 +9,7 @@ import { useCurrentPosition } from "../hooks/useGeolocation";
 import { usePolling } from "../hooks/usePolling";
 import { useToast } from "../state/toast";
 import { duration, haversineKm, isLive, km, money } from "../util/format";
+import RideChat from "../components/RideChat";
 
 const VEHICLE_NAME: Record<VehicleType, string> = { economy: "Economy", comfort: "Comfort", xl: "XL" };
 
@@ -235,6 +236,10 @@ function Trip({ ride, confirm, setConfirm, onCancel, busy }: { ride: Ride; confi
         </div>
       )}
       <div className="nr-panel"><Kv rows={[["Quote", money(ride.estimate.fare, ride.currency)], ["Payment", ride.paymentMethod]]} /></div>
+      {ride.status !== "in_progress" && <CancelRow confirm={confirm} setConfirm={setConfirm} onCancel={onCancel} busy={busy} />}
+
+       <div className="nr-panel"><Kv rows={[["Quote", money(ride.estimate.fare, ride.currency)], ["Payment", ride.paymentMethod]]} /></div>
+      <RideChat key={ride.id} rideId={ride.id} me="rider" peerName={d?.name} />     {/* <- add */}
       {ride.status !== "in_progress" && <CancelRow confirm={confirm} setConfirm={setConfirm} onCancel={onCancel} busy={busy} />}
     </>
   );

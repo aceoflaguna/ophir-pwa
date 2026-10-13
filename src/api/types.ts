@@ -42,3 +42,4 @@ export interface Earnings { trips: number; gross: number; fees: number; net: num
 export interface Payment { id: string; rideId: string; amount: number; currency: string; method: PaymentMethod; status: string; createdAt: string }
 export interface RideEvent { id: number; type: string; actorId: string | null; data: Record<string, unknown>; createdAt: string }
 export interface SessionInfo { sessionId: string; current: boolean; userAgent: string | null; ip: string | null; createdAt: string; lastUsedAt: string; expiresAt: string }
+export interface ChatMessage { id: number; rideId: string; senderId: string; senderRole: "rider" | "driver"; body: string; createdAt: string }
